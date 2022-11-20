@@ -1,5 +1,5 @@
 import { component$, Resource } from "@builder.io/qwik";
-import { RequestHandler, useEndpoint } from "@builder.io/qwik-city";
+import { Link, RequestHandler, useEndpoint } from "@builder.io/qwik-city";
 import { InfoItem } from "~/components/info-item";
 import { CompanyIcon } from "~/icons/company";
 import { LinkIcon } from "~/icons/link";
@@ -38,7 +38,7 @@ export default component$(() => {
             <p class={`mt-4 text-gray-700 max-w-md`}>{data.bio}</p>
 
             <div class={`mt-4 flex items-center space-x-2`}>
-              <a
+              <Link
                 href={`/${data.login}/followers`}
                 class={`flex items-center space-x-1 group`}
               >
@@ -49,9 +49,9 @@ export default component$(() => {
                 <p class={`text-gray-600 text-sm group-hover:text-blue-500`}>
                   {data.followers > 1 ? "followers" : "follower"}
                 </p>
-              </a>
+              </Link>
               <span>&bull;</span>
-              <a
+              <Link
                 href={`/${data.login}/followings`}
                 class={`flex items-center space-x-1 hover:text-blue-500 group`}
               >
@@ -61,7 +61,7 @@ export default component$(() => {
                 <p class={`text-gray-600 text-sm group-hover:text-blue-500`}>
                   {data.following > 1 ? "followings" : "following"}
                 </p>
-              </a>
+              </Link>
             </div>
 
             {/*  */}
@@ -91,12 +91,12 @@ export default component$(() => {
           <ul class="mt-6">
             {links.map((link) => (
               <li>
-                <a
+                <Link
                   href={`/${data.login}/${link.href}`}
                   class=" hover:bg-gray-200 bg-gray-100  px-4 py-2 rounded-full"
                 >
                   <span>{link.name}</span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
