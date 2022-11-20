@@ -13,7 +13,7 @@ export const Appbar = component$(() => {
 
         <ul>
           <li>
-            <a href="https://www.github.com" target="_blank">
+            <a href="https://github.com/harshmangalam/qwikhub" target="_blank">
               <GithubIcon />
             </a>
           </li>

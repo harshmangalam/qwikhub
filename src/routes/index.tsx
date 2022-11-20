@@ -1,5 +1,6 @@
 import { component$, Resource } from "@builder.io/qwik";
 import { RequestHandler, useEndpoint } from "@builder.io/qwik-city";
+import { fetchUser } from "~/services/user";
 
 export default component$(() => {
   const endpointData = useEndpoint<ReturnType<typeof onPost>>();
@@ -71,12 +72,9 @@ export const onPost: RequestHandler = async ({ request, response }) => {
     };
   }
 
-  const res = await fetch(`https://api.github.com/users/${username}`);
-  const data = await res.json();
+  const [ok, data] = await fetchUser(username.toString());
 
-  console.log(res.ok)
-
-  if (!res.ok) {
+  if (!ok) {
     return {
       error: data,
     };

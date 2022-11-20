@@ -6,6 +6,7 @@ import { LinkIcon } from "~/icons/link";
 import { LocationIcon } from "~/icons/location";
 import { TwitterIcon } from "~/icons/twitter";
 import { UsersIcon } from "~/icons/users";
+import { fetchUser } from "~/services/user";
 
 export default component$(() => {
   const endpointData = useEndpoint();
@@ -111,9 +112,9 @@ export const onGet: RequestHandler = async ({ response, params }) => {
     throw response.redirect("/");
   }
 
-  const res = await fetch(`https://api.github.com/users/${username}`);
-  const data = await res.json();
-  if (!res.ok) {
+  const [ok, data] = await fetchUser(username.toString());
+
+  if (!ok) {
     throw response.redirect("/");
   }
 
