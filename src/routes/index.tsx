@@ -8,7 +8,7 @@ export default component$(() => {
       value={endpointData}
       onPending={() => <div>Loading...</div>}
       onRejected={() => <div>Error</div>}
-      onResolved={(data) => (
+      onResolved={(data: any) => (
         <section class=" max-w-md mx-auto">
           <form method="POST" class="flex flex-col space-y-4">
             <div class="flex flex-col space-y-2">
@@ -39,7 +39,7 @@ export default component$(() => {
               Continue
             </button>
           </form>
-          {data.error && (
+          {data?.error?.message && (
             <div class="mt-6 border border-red-300 text-red-500 p-4">
               <p>{data.error.message}</p>
               {data.error.documentation_url && (
@@ -74,7 +74,9 @@ export const onPost: RequestHandler = async ({ request, response }) => {
   const res = await fetch(`https://api.github.com/users/${username}`);
   const data = await res.json();
 
-  if (data.message) {
+  console.log(res.ok)
+
+  if (!res.ok) {
     return {
       error: data,
     };
