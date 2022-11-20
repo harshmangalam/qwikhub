@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 
-interface RepositoryProps {
+interface RepoCardProps {
   id: number;
   name: string;
   description: string;
@@ -10,7 +10,7 @@ interface RepositoryProps {
   forksCount: number;
   htmlUrl: string;
 }
-export const Repository = component$(
+export const RepoCard = component$(
   ({
     name,
     description,
@@ -19,7 +19,7 @@ export const Repository = component$(
     stargazersCount,
     forksCount,
     htmlUrl,
-  }: RepositoryProps) => {
+  }: RepoCardProps) => {
     return (
       <article class="border border-gray-300  rounded-md p-4">
         <div class="flex items-center justify-between">
