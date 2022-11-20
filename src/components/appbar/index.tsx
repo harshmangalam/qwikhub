@@ -5,14 +5,14 @@ import { QwikLogo } from "~/icons/qwik";
 export const Appbar = component$(() => {
   return (
     <header class="bg-white border-b border-gray-300 shadow">
-      <nav class="h-16 w-full flex items-center justify-between">
+      <nav class="max-w-7xl px-4 mx-auto h-16 w-full flex items-center justify-between">
         <div>
           <QwikLogo />
         </div>
 
         <ul>
           <li>
-            <a href="github.com" target="_blank">
+            <a href="https://www.github.com" target="_blank">
               <GithubIcon />
             </a>
           </li>
