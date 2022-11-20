@@ -1,6 +1,6 @@
 import { component$, Resource } from "@builder.io/qwik";
 import { RequestHandler, useEndpoint } from "@builder.io/qwik-city";
-import { fetchUser } from "~/services/user";
+import { fetchUser } from "~/services/api";
 
 export default component$(() => {
   const endpointData = useEndpoint<ReturnType<typeof onPost>>();

@@ -6,7 +6,7 @@ import { LinkIcon } from "~/icons/link";
 import { LocationIcon } from "~/icons/location";
 import { TwitterIcon } from "~/icons/twitter";
 import { UsersIcon } from "~/icons/users";
-import { fetchUser } from "~/services/user";
+import { fetchUser } from "~/services/api";
 
 export default component$(() => {
   const endpointData = useEndpoint();
