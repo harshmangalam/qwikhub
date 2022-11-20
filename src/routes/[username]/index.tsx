@@ -113,8 +113,7 @@ export const onGet: RequestHandler = async ({ response, params }) => {
 
   const res = await fetch(`https://api.github.com/users/${username}`);
   const data = await res.json();
-
-  if (!data.login) {
+  if (!res.ok) {
     throw response.redirect("/");
   }
 
