@@ -15,7 +15,7 @@ export const UserCard = ({
           <a
             href={`https://github.com/${login}`}
             target="_blank"
-            class="font-bold block  text-blue-400 hover:underline"
+            class="font-mnormal block  text-blue-400 hover:underline"
           >
             {login}
           </a>

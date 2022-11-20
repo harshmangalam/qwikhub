@@ -3,7 +3,7 @@ import { RequestHandler, useEndpoint } from "@builder.io/qwik-city";
 import { PageTitle } from "~/components/page-title";
 import { UserCard } from "~/components/user-card";
 
-import { fetchFollowers } from "~/services/api";
+import { fetchFollowings } from "~/services/api";
 
 export default component$(() => {
   const endpointData = useEndpoint();
@@ -37,7 +37,7 @@ export const onGet: RequestHandler = async ({ response, params }) => {
     throw response.redirect("/");
   }
 
-  const [ok, data] = await fetchFollowers(username.toString());
+  const [ok, data] = await fetchFollowings(username.toString());
 
   if (!ok) {
     throw response.redirect("/");

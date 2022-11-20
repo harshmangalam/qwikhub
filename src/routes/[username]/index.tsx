@@ -52,7 +52,7 @@ export default component$(() => {
               </a>
               <span>&bull;</span>
               <a
-                href={`/github/${data.login}/followings`}
+                href={`/${data.login}/followings`}
                 class={`flex items-center space-x-1 hover:text-blue-500 group`}
               >
                 <p class={`font-medium group-hover:text-blue-500`}>
