@@ -9,43 +9,57 @@ export default component$(() => {
       onPending={() => <div>Loading...</div>}
       onRejected={() => <div>Error</div>}
       onResolved={(data) => (
-        <form method="POST" class="flex flex-col space-y-4 max-w-md mx-auto">
-          <div class="flex flex-col space-y-2">
-            <label
-              class={`text-gray-600 ${
-                data?.error?.username ? "text-red-500 " : ""
-              }`}
-              for="username"
+        <section class=" max-w-md mx-auto">
+          <form method="POST" class="flex flex-col space-y-4">
+            <div class="flex flex-col space-y-2">
+              <label
+                class={`text-gray-600 ${
+                  data?.error?.username ? "text-red-500 " : ""
+                }`}
+                for="username"
+              >
+                Github username
+              </label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="harshmangalam"
+                class={`${data?.error?.username ? "border-red-500" : ""}`}
+              />
+              {data?.error && (
+                <p class="text-red-500 text-sm ">{data.error.username}</p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              class="bg-blue-500 text-white font-medium py-3 px-4"
             >
-              Github username
-            </label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="harshmangalam"
-              class={`${data?.error?.username ? "border-red-500" : ""}`}
-            />
-            {data?.error && (
-              <p class="text-red-500 text-sm ">{data.error.username}</p>
-            )}
-          </div>
-
-          <button
-            type="submit"
-            class="bg-blue-500 text-white font-medium py-3 px-4"
-          >
-            Continue
-          </button>
-
-          <pre>{JSON.stringify(data, null, 4)}</pre>
-        </form>
+              Continue
+            </button>
+          </form>
+          {data.error && (
+            <div class="mt-6 border border-red-300 text-red-500 p-4">
+              <p>{data.error.message}</p>
+              {data.error.documentation_url && (
+                <a
+                  href={data.error.documentation_url}
+                  target="_blank"
+                  class="text-blue-500 mt-2 block"
+                >
+                  View details
+                </a>
+              )}
+            </div>
+          )}
+        </section>
       )}
     />
   );
 });
 
-export const onPost: RequestHandler = async ({ request ,response}) => {
+export const onPost: RequestHandler = async ({ request, response }) => {
   const formData = await request.formData();
   const username = formData.get("username");
 
@@ -60,14 +74,11 @@ export const onPost: RequestHandler = async ({ request ,response}) => {
   const res = await fetch(`https://api.github.com/users/${username}`);
   const data = await res.json();
 
-  if (!data.login) {
+  if (data.message) {
     return {
-      error: {
-        username: "Username is invalid!",
-      },
+      error: data,
     };
   }
 
-  throw response.redirect(`/${username}`)
-  
+  throw response.redirect(`/${username}`);
 };

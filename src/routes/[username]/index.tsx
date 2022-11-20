@@ -1,5 +1,6 @@
 import { component$, Resource } from "@builder.io/qwik";
 import { RequestHandler, useEndpoint } from "@builder.io/qwik-city";
+import { InfoItem } from "~/components/info-item";
 import { CompanyIcon } from "~/icons/company";
 import { LinkIcon } from "~/icons/link";
 import { LocationIcon } from "~/icons/location";
@@ -8,13 +9,20 @@ import { UsersIcon } from "~/icons/users";
 
 export default component$(() => {
   const endpointData = useEndpoint();
+  const links = [
+    {
+      name: "Repository",
+      href: "repos",
+    },
+  ];
+
   return (
     <Resource
       value={endpointData}
       onPending={() => <div>Loading...</div>}
       onRejected={() => <div>Error</div>}
-      onResolved={(data:any) => (
-        <div class="mt-6">
+      onResolved={(data: any) => (
+        <div class="mt-6 max-w-md mx-auto">
           <div>
             <img
               src={data.avatar_url}
@@ -55,6 +63,7 @@ export default component$(() => {
               </a>
             </div>
 
+            {/*  */}
             <div class={`mt-4 flex flex-col space-y-2`}>
               {data.company && (
                 <InfoItem text={data.company} icon={<CompanyIcon />} />
@@ -82,7 +91,7 @@ export default component$(() => {
             {links.map((link) => (
               <li>
                 <a
-                  href={`/github/${username}/${link.href}`}
+                  href={`/${data.login}/${link.href}`}
                   class=" hover:bg-gray-200 bg-gray-100  px-4 py-2 rounded-full"
                 >
                   <span>{link.name}</span>
