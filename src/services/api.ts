@@ -13,3 +13,9 @@ export const fetchFollowers = async (username: string) => {
   const res = await fetch(`${endpoint}/users/${username}/followers`);
   return [res.ok, await res.json()];
 };
+
+
+export const fetchFollowings = async (username: string) => {
+  const res = await fetch(`${endpoint}/users/${username}/following`);
+  return [res.ok, await res.json()];
+};
