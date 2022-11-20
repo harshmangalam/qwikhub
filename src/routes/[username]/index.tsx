@@ -1,5 +1,10 @@
 import { component$, Resource } from "@builder.io/qwik";
-import { Link, RequestHandler, useEndpoint } from "@builder.io/qwik-city";
+import {
+  DocumentHead,
+  Link,
+  RequestHandler,
+  useEndpoint,
+} from "@builder.io/qwik-city";
 import { InfoItem } from "~/components/info-item";
 import { CompanyIcon } from "~/icons/company";
 import { LinkIcon } from "~/icons/link";
@@ -119,4 +124,8 @@ export const onGet: RequestHandler = async ({ response, params }) => {
   }
 
   return data;
+};
+
+export const head: DocumentHead = {
+  title: "User | Qwikhub",
 };

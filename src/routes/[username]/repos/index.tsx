@@ -1,5 +1,5 @@
 import { component$, Resource } from "@builder.io/qwik";
-import { RequestHandler, useEndpoint } from "@builder.io/qwik-city";
+import { DocumentHead, RequestHandler, useEndpoint } from "@builder.io/qwik-city";
 import { PageTitle } from "~/components/page-title";
 
 import { fetchRepos } from "~/services/api";
@@ -50,4 +50,8 @@ export const onGet: RequestHandler = async ({ response, params }) => {
   }
 
   return data;
+};
+
+export const head: DocumentHead = {
+  title: "Repos | Qwikhub",
 };

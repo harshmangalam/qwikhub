@@ -1,5 +1,5 @@
 import { component$, Resource } from "@builder.io/qwik";
-import { RequestHandler, useEndpoint } from "@builder.io/qwik-city";
+import { DocumentHead, RequestHandler, useEndpoint } from "@builder.io/qwik-city";
 import { fetchUser } from "~/services/api";
 
 export default component$(() => {
@@ -81,4 +81,15 @@ export const onPost: RequestHandler = async ({ request, response }) => {
   }
 
   throw response.redirect(`/${username}`);
+};
+
+
+export const head: DocumentHead = {
+  title: 'Home | Qwikhub',
+  meta: [
+    {
+      name: 'description',
+      content: 'Web app build with github rest api and qwikcity',
+    },
+  ],
 };
