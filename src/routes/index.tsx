@@ -1,6 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import { Link } from "@builder.io/qwik-city";
+import { UsersIcon } from "~/icons/users";
 
 export default component$(() => {
   return (
@@ -8,6 +9,8 @@ export default component$(() => {
       Hello Home
       <Link href="/about">About</Link>
       <Link href="/flower">Flower</Link>
+
+      <UsersIcon size={32} />
     </div>
   );
 });
