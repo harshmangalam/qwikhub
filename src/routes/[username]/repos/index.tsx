@@ -1,13 +1,12 @@
 import { component$, Resource } from "@builder.io/qwik";
-import { Link, RequestHandler, useEndpoint, useLocation } from "@builder.io/qwik-city";
-import { ChevLeftIcon } from "~/icons/chev-left";
+import { RequestHandler, useEndpoint } from "@builder.io/qwik-city";
+import { PageTitle } from "~/components/page-title";
 
 import { fetchRepos } from "~/services/api";
 import { RepoCard } from "./repo-card";
 
 export default component$(() => {
   const endpointData = useEndpoint();
-  const location = useLocation()
 
   return (
     <Resource
@@ -16,10 +15,7 @@ export default component$(() => {
       onRejected={() => <div>Error</div>}
       onResolved={(repos: any) => (
         <section>
-            <Link href={`/${location.params.username}`} class="flex items-center space-x-2">
-                <ChevLeftIcon/>
-                <h2 class="text-xl font-normal">Repos</h2>
-            </Link>
+          <PageTitle title="Repos" />
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             {repos.map((repo: any) => (
               <RepoCard
