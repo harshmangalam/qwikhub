@@ -39,7 +39,7 @@ export default component$(() => {
 
             <div class={`mt-4 flex items-center space-x-2`}>
               <a
-                href={`/github/${data.login}/followers`}
+                href={`/${data.login}/followers`}
                 class={`flex items-center space-x-1 group`}
               >
                 <UsersIcon />
