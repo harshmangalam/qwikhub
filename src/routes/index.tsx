@@ -1,11 +1,14 @@
 import { component$ } from "@builder.io/qwik";
+import { RequestHandler } from "@builder.io/qwik-city";
 
 export default component$(() => {
   return (
     <section class="max-w-md mx-auto">
       <form method="POST" class="flex flex-col space-y-4">
         <div class="flex flex-col space-y-2">
-          <label class="text-gray-600" for="username">Github username</label>
+          <label class="text-gray-600" for="username">
+            Github username
+          </label>
           <input
             type="text"
             name="username"
@@ -24,3 +27,16 @@ export default component$(() => {
     </section>
   );
 });
+
+export const onPost: RequestHandler = async ({ request }) => {
+  const formData = await request.formData();
+  const username = formData.get("username");
+
+  if (!username || username.toString().trim().length === 0) {
+    return {
+      error: {
+        username: "Username is required!",
+      },
+    };
+  }
+};
