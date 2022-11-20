@@ -3,9 +3,8 @@ import {
   QwikCity,
   RouterOutlet,
   ServiceWorkerRegister,
-  useDocumentHead,
-  useLocation,
 } from "@builder.io/qwik-city";
+import "./global.css";
 
 export default component$(() => {
   return (
